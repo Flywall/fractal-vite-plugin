@@ -1,5 +1,5 @@
 {
-  "name": "vite-plugin-fractal",
+  "name": "fractal-vite-plugin",
   "version": "1.0.1",
   "main": "index.js",
   "license": "MIT",
