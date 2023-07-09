@@ -1,0 +1,46 @@
+{
+  "name": "vite-plugin-fractal",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "types": "./dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
+  "scripts": {
+    "build": "npm run build-plugin",
+    "build-plugin": "rm -rf dist && npm run build-plugin-types && npm run build-plugin-esm && npm run build-plugin-cjs && cp src/vite-dev-server.html dist/",
+    "build-plugin-types": "tsc --emitDeclarationOnly",
+    "build-plugin-cjs": "esbuild src/index.ts --platform=node --format=cjs --outfile=dist/index.cjs --define:import.meta.url=import_meta_url --inject:./import.meta.url-polyfill.js",
+    "build-plugin-esm": "esbuild src/index.ts --platform=node --format=esm --outfile=dist/index.mjs",
+    "build-inertia-helpers": "rm -rf inertia-helpers && tsc --project tsconfig.inertia-helpers.json",
+    "lint": "eslint --ext .ts ./src ./tests",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@types/node": "^20.4.1",
+    "@typescript-eslint/eslint-plugin": "^5.61.0",
+    "@typescript-eslint/parser": "^5.61.0",
+    "esbuild": "^0.18.11",
+    "eslint": "^8.44.0",
+    "typescript": "^5.1.6",
+    "vitest": "^0.33.0"
+  },
+  "peerDependencies": {
+    "vite": "^4.4.2"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "dependencies": {
+    "vite": "^4.4.2",
+    "vite-plugin-full-reload": "^1.0.5"
+  }
+}
