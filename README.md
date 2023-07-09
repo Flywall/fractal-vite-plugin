@@ -75,5 +75,7 @@ const handlebars = require('@frctl/handlebars')({
 {{{vite path/to/file}}}
 ```
 
-To add autoreload function when files changes add :
-- {{{viteHotReload }}}
+- To add autoreload function when files changes add :
+```
+{{{viteHotReload }}}
+```
